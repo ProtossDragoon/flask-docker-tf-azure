@@ -57,7 +57,7 @@ def predict():
     preprocessed_payload = preprocess(request.json)
     prediction = list(model(preprocessed_payload)[0].numpy())
     prediction = [float(x) for x in prediction]
-    return jsonify({'prediction': prediction})
+    return jsonify({'MPG': prediction})
 
 
 if __name__ == "__main__":
