@@ -15,5 +15,5 @@ data = {
 
 input_data = json.dumps(data)
 headers = {"Content-Type": "application/json"}
-resp = requests.post(url, input_data, headers=headers)
-print(resp.text)
+resposne = requests.post(url, input_data, headers=headers)
+print(resposne.text)
