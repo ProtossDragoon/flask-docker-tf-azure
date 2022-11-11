@@ -1,0 +1,39 @@
+name: Build and package RoBERTa-sequencing to Dockerhub
+  on:
+    # 메인 브랜치에 푸시되거나 풀 리퀘스트가 발생했을 때 워크플로가 실행됨
+    push:
+      branches: [ main ]
+    
+    # 깃허브의 ‘액션’ 탭을 통해 워크플로를 직접 실행할 수 있도록 허용함
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: 체크아웃
+      - uses: actions/checkout@v2
+
+      - name: 애저 인증
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: 애저 확장 설치 시 사용자 입력 대기모드 방지 설정
+        run: az config set extension.use_dynamic_install=yes_without_prompt
+
+      - name: 워크스페이스 연결
+        run: az ml compute attach -w "Practical-MLOps-Chapter4" -g "Practical-MLOps-Chapter4"
+
+      - name: 모델 복원
+        run: az ml model download --name MLP-MPGRegression --version 1 -p ./webapp
+
+      - name: 컨테이너 빌드 및 푸시
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: false
+          tags: protossdragoon/flask-docker-tf-azure_x86:v1
