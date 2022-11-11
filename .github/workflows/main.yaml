@@ -1,11 +1,12 @@
 name: Build and package RoBERTa-sequencing to Dockerhub
-  on:
-    # 메인 브랜치에 푸시되거나 풀 리퀘스트가 발생했을 때 워크플로가 실행됨
-    push:
-      branches: [ main ]
-    
-    # 깃허브의 ‘액션’ 탭을 통해 워크플로를 직접 실행할 수 있도록 허용함
-    workflow_dispatch:
+
+on:
+  # 메인 브랜치에 푸시되거나 풀 리퀘스트가 발생했을 때 워크플로가 실행됨
+  push:
+    branches: [ main ]
+  
+  # 깃허브의 ‘액션’ 탭을 통해 워크플로를 직접 실행할 수 있도록 허용함
+  workflow_dispatch:
 
 jobs:
   build:
