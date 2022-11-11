@@ -15,7 +15,7 @@ jobs:
     steps:
 
       - name: 체크아웃
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: 애저 인증
         uses: azure/login@v1
