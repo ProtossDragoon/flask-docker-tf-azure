@@ -22,8 +22,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: 애저 확장 설치 시 사용자 입력 대기모드 방지 설정
-        run: az config set extension.use_dynamic_install=yes_without_prompt
+      - name: 애저 확장 설치 및 사용자 입력 대기모드 방지 설정
+        run: |
+          az --version
+          az config set extension.use_dynamic_install=yes_without_prompt
+          az extension add -n ml
 
       - name: 워크스페이스 연결
         run: az ml compute attach -w "Practical-MLOps-Chapter4" -g "Practical-MLOps-Chapter4"
