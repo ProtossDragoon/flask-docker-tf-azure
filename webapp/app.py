@@ -44,7 +44,7 @@ def predict():
         "Horsepower": 190,
         "Weight": 3850,
         "Acceleration": 8.5,
-        "ModelYear": 2019,
+        "ModelYear": 70,
         "Country": "USA",
     }
 
